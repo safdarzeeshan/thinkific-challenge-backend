@@ -11,11 +11,13 @@ class Integer(APIView):
     permission_classes = IsAuthenticated,
     serializer_class = IntegerSerializer
 
+    # To get a user's current Integer
     def get(self, request):
         user = self.request.user.customuser
         serializer = self.serializer_class(user, many=False)
         return Response(serializer.data)
 
+    # To set a new number for the current Integer
     def put(self, request):
         user = self.request.user.customuser
         serializer = self.serializer_class(user, data=request.data)
@@ -30,6 +32,7 @@ class NextInteger(APIView):
     permission_classes = IsAuthenticated,
     serializer_class = NextIntegerSerializer
 
+    # To get the next Integer
     def get(self, request):
         user = self.request.user.customuser
         serializer = self.serializer_class(user, many=False)
